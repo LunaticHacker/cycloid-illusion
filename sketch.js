@@ -2,12 +2,14 @@ let points = [];
 let lines;
 let myDiv;
 let mypara;
+let lineCheckbox;
 function setup() {
   createCanvas(400, 400);
 
   myDiv = createDiv();
 
   lines = createSlider(0.1, TWO_PI, TWO_PI, 0.1);
+  lineCheckbox = createCheckbox("SHOW LINES");
   mypara = createP(
     "Adjust the  slider to increase number of lines and see the illusion"
   );
@@ -41,7 +43,7 @@ function draw() {
   noFill();
   ellipse(0, 0, 200, 200);
   for (pt of points) {
-    line(pt.x, pt.y, -pt.x, -pt.y);
+    if (lineCheckbox.checked()) line(pt.x, pt.y, -pt.x, -pt.y);
     fill(pt.c.r, pt.c.g, pt.c.b);
     ellipse(pt.x * sin(pt.rate), pt.y * sin(pt.rate), 10, 10);
     pt.rate += 0.01;
